@@ -1,0 +1,31 @@
+<h3>User list:</h3>
+
+<table class="table table-striped">
+	<thead>
+	<tr>
+		<th>ID</th>
+		<th>Username</th>
+		<th>Email Address</th>
+		<th>p_create</th>
+		<th>p_read</th>
+		<th>p_update</th>
+		<th>p_delete</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr *ngFor="let user of users">
+		<td>{{ user.userId }}</td>
+		<td>{{ user.username }}</td>
+		<td *ngIf="userHasUpdatePerm()" name="wthever" (click)="passUpdateId(user.userId)"
+			routerLink="/updateUser" class="text-primary text-decoration-underline">{{ user.email }}</td>
+		<td *ngIf="!userHasUpdatePerm()" name="wthever2">{{ user.email }}</td>
+		<td>{{ user.perm_create }}</td>
+		<td>{{ user.perm_read }}</td>
+		<td>{{ user.perm_update }}</td>
+		<td>{{ user.perm_delete }}</td>
+		<td *ngIf="userHasDeletePerm()">
+			<button class="btn btn-danger" (click)="deleteUser(user.userId)">Delete</button>
+		</td>
+	</tr>
+	</tbody>
+</table>
