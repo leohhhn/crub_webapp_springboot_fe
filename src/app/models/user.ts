@@ -5,8 +5,8 @@ export class User {
 	email: string;
 	password: string | undefined = '';
 
-	perm_read: number;
 	perm_create: number;
+	perm_read: number;
 	perm_update: number;
 	perm_delete: number;
 
@@ -17,8 +17,8 @@ export class User {
 	perm_mach_restart: number;
 	perm_mach_search: number;
 
-	constructor(username: string, email: string, perm_read: number,
-				perm_create: number, perm_update: number, perm_delete: number,
+	constructor(username: string, email: string, perm_create: number,
+				perm_read: number, perm_update: number, perm_delete: number,
 				perm_mach_create: number, perm_mach_destroy: number, perm_mach_start: number,
 				perm_mach_stop: number, perm_mach_restart: number, perm_mach_search: number,
 				password?: string, userId?: number) {

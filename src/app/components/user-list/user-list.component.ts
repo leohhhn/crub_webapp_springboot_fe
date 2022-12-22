@@ -27,6 +27,7 @@ export class UserListComponent {
 			this.router.navigate(['login']);
 		}
 		this.getAllUsers(); // todo change arch to have userService distribute user list to components
+		console.log(this.users)
 	}
 
 	getAllUsers() {
