@@ -11,13 +11,24 @@ import {Router} from '@angular/router';
 export class UserService {
 	// todo could be a pitfall; this list should be read-only!!!
 	// todo update after create/update/delete!!!!
-	users: User[] = [];
 
+	users: User[] = [];
 	userToUpdate: User | undefined;
+	currentUser: User | undefined; // currently logged-in user
 
 	private baseURL = 'http://localhost:8090';
 
 	constructor(private httpClient: HttpClient, private authService: AuthService, private router: Router) {
+	}
+
+	getUserByUsername(username: string): User | undefined {
+		// @ts-ignore
+		this.users.forEach((u) => {
+			if (u.username == username) {
+				return u;
+			}
+		});
+		return undefined;
 	}
 
 	fetchAllUsers(): Observable<User[]> {
@@ -34,12 +45,6 @@ export class UserService {
 		return this.httpClient.get<User[]>(`${this.baseURL}/users/all`, requestOptions);
 	}
 
-	reloadUsers() {
-		this.fetchAllUsers().subscribe(res => {
-			this.users = res;
-		});
-	}
-
 	login(username: string, password: string) {
 		this.httpClient.post(`${this.baseURL}/auth/login`, {
 			username: username,
@@ -47,7 +52,11 @@ export class UserService {
 		}).subscribe((res) => {
 				localStorage.setItem('jwt', Object.values(res)[0]);
 				localStorage.setItem('loggedInUsername', username);
-				this.router.navigate(['userList']);
+				this.fetchAllUsers().subscribe((res) => {
+					this.users=res;
+					this.router.navigate(['userList']);
+				});
+
 			}, (error) => {
 				window.alert('Bad credentials; try again.');
 			}
@@ -63,12 +72,12 @@ export class UserService {
 		return localStorage.getItem('jwt') !== null;
 	}
 
-	deleteUser(id: number | undefined) {
-		if (!this.authService.hasPermission('p_delete')) return;
+	deleteUser(id: number | undefined): Observable<Object> | null {
+		if (!this.authService.hasPermission('p_delete')) return null;
 
 		let userToDelete: User;
 
-		this.users?.forEach((u) => {
+		this.users.forEach((u) => {
 			if (u.userId == id) {
 				userToDelete = u;
 			}
@@ -80,31 +89,25 @@ export class UserService {
 			'Access-Control-Allow-Headers': 'Content-Type',
 			'Authorization': `Bearer ${localStorage.getItem('jwt')}`
 		}
+
 		const requestOptions = {
 			headers: new HttpHeaders(headerDict),
 			body: {
 				'userId': id,
-				'username': '',
+				//@ts-ignore
+				'username': userToDelete.username,
 				'email': '',
 				'perm_update': '',
 				'perm_read': '',
 				'perm_create': '',
 				'perm_delete': ''
 			}
-		};
+		}
 
-		// todo fix not showing updated table immediately
-		// todo fix problem when deleting yourself- jwtFilter snaps in spring & lets you delete yourself
-
-		try { // todo return observable and in component re
-			this.httpClient.delete(`${this.baseURL}/users/delete`, requestOptions).subscribe((res) => {
-					console.log("DELETE call successful value returned in body",
-						res);
-				},
-				res => {
-					console.log("DELETE call in error", res);
-				});
+		try {
+			return this.httpClient.delete(`${this.baseURL}/users/delete`, requestOptions);
 		} catch {
+			return null;
 		}
 	}
 
@@ -194,5 +197,9 @@ export class UserService {
 		} catch (e) {
 			console.log(e);
 		}
+	}
+
+	getAllUsers() {
+		return this.users;
 	}
 }

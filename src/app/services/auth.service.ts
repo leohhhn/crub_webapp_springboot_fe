@@ -13,18 +13,10 @@ export class AuthService {
 	hasPermission(permToCheckFor: string): boolean {
 
 		try {
+			// todo see how to fix ts ignores :/
 			let decodedJWT: Object = jwtDecode(<string>localStorage.getItem('jwt'))
-
 			// @ts-ignore
 			const val: number = decodedJWT[permToCheckFor];
-
-			// if (val === 1)
-			// {
-			// 	console.log("val is equal to 1")
-			// 	return true;
-			// }
-			// return false;
-			//
 
 			// @ts-ignore
 			return decodedJWT[permToCheckFor] == 1;

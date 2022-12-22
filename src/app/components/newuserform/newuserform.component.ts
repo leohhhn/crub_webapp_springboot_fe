@@ -27,11 +27,13 @@ export class NewuserformComponent {
 	ngOnInit() {
 	}
 
+	// todo add mach permissions to form
+	// todo let perm inputs be 1 or 0
 	createUser() {
-		let newUser = new User(this.username, this.email, this.p_read, this.p_create, this.p_update, this.p_delete, this.password);
-		this.userService.createUser(newUser);
-		this.router.navigate(['userList']);
-
+		// todo reenable new users
+		// let newUser = new User(this.username, this.email, this.p_read, this.p_create, this.p_update, this.p_delete, this.password);
+		// this.userService.createUser(newUser);
+		// this.router.navigate(['userList']);
 	}
 
 }

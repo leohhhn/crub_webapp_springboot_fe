@@ -10,6 +10,12 @@
 		<th>p_read</th>
 		<th>p_update</th>
 		<th>p_delete</th>
+		<th>pm_create</th>
+		<th>pm_destroy</th>
+		<th>pm_start</th>
+		<th>pm_stop</th>
+		<th>pm_restart</th>
+		<th>pm_search</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -23,6 +29,12 @@
 		<td>{{ user.perm_read }}</td>
 		<td>{{ user.perm_update }}</td>
 		<td>{{ user.perm_delete }}</td>
+		<td>{{ user.perm_mach_create }}</td>
+		<td>{{ user.perm_mach_destroy }}</td>
+		<td>{{ user.perm_mach_start }}</td>
+		<td>{{ user.perm_mach_stop }}</td>
+		<td>{{ user.perm_mach_restart }}</td>
+		<td>{{ user.perm_mach_search }}</td>
 		<td *ngIf="userHasDeletePerm()">
 			<button class="btn btn-danger" (click)="deleteUser(user.userId)">Delete</button>
 		</td>

@@ -12,10 +12,10 @@ const routes: Routes = [
 	{path: 'userList', component: UserListComponent},
 	{path: 'newUser', component: NewuserformComponent},
 	{path: 'updateUser', component: UpdateuserformComponent},
-	{path: '**', component: LoginComponent} // todo chage to 404 not found component
+	{path: '**', component: LoginComponent} // todo change to 404 not found component
 ];
 
-// intercepter on httpclient on any error to redirect to login
+//  todo? intercepter on httpclient on any error to redirect to login
 @NgModule({
 	imports: [
 		RouterModule.forRoot(routes),

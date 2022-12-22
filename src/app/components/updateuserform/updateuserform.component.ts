@@ -35,10 +35,13 @@ export class UpdateuserformComponent {
 		this.p_read = u.perm_read;
 	}
 
+	// todo add mach permissions to form
+	// todo let perm inputs be 1 or 0
 	updateUser() {
-		let t: User = new User(this.username, this.email, this.p_read, this.p_create, this.p_update, this.p_delete);
-		console.log("User sent to userService to update:\n" + t);
-		this.userService.updateUser(t);
+		// todo reenable updating users
+		// let t: User = new User(this.username, this.email, this.p_read, this.p_create, this.p_update, this.p_delete);
+		// console.log("User sent to userService to update:\n" + t);
+		// this.userService.updateUser(t);
 	}
 
 

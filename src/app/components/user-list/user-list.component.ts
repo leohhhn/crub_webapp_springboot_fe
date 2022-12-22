@@ -9,55 +9,62 @@ import {AuthService} from '../../services/auth.service';
 	templateUrl: './user-list.component.html',
 	styleUrls: ['./user-list.component.css']
 })
+// todo remove delete button for currently logged in user
 
 export class UserListComponent {
 	users: User[] | undefined;
 
-	constructor(private userSerivce: UserService, private router: Router, private authService: AuthService, private route: ActivatedRoute) {
+	constructor(private userService: UserService, private router: Router, private authService: AuthService, private route: ActivatedRoute) {
 	}
 
 	ngOnInit() {
-		if (!this.userSerivce.isLoggedIn()) {
+		if (!this.userService.isLoggedIn()) {
 			window.alert('Please log in first.');
 			this.router.navigate(['login']);
 		}
-		if (this.userSerivce.isLoggedIn() && !this.authService.hasPermission('p_read')) {
+		if (this.userService.isLoggedIn() && !this.authService.hasPermission('p_read')) {
 			window.alert('no permission to READ!');
 			this.router.navigate(['login']);
 		}
-		this.getAllUsers();
+		this.getAllUsers(); // todo change arch to have userService distribute user list to components
 	}
 
 	getAllUsers() {
-		this.userSerivce.fetchAllUsers().subscribe(data => {
+		this.userService.fetchAllUsers().subscribe(data => {
 			this.users = data;
-			this.userSerivce.users = data;
+			this.userService.users = data;
 		});
 	}
+	userHasUpdatePerm() {
+		return this.authService.hasPermission('p_update');
+	}
+
+	passUpdateId(userId: number | undefined) {
+		this.userService.setUpdateUser(userId); // used to pass id from list to update form
+	}
+
+	// currentUser():string {
+	// 	return <string>this.userService.currentUser?.username;
+	// }
 
 	userHasDeletePerm(): boolean {
 		return this.authService.hasPermission('p_delete');
 	}
 
 	deleteUser(id: number | undefined) {
-		this.userSerivce.deleteUser(id); // subscribe to observable here and call fetch again
-		this.userSerivce.reloadUsers();
-		this.reloadUserList();
-		return;
+		// @ts-ignore
+		this.userService.deleteUser(id).subscribe((res) => {
+				this.reloadUserList();
+			},
+			res => {
+				console.log("DELETE call in error", res);
+			});
 	}
 
 	reloadUserList() {
 		this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 		this.router.onSameUrlNavigation = 'reload';
 		this.router.navigate(['./'], {relativeTo: this.route})
-	}
-
-	userHasUpdatePerm() {
-		return this.authService.hasPermission('p_update');
-	}
-
-	passUpdateId(userId: number | undefined) {
-		this.userSerivce.setUpdateUser(userId);
 	}
 }
 
