@@ -31,7 +31,6 @@ export class UserListComponent {
 
 	getAllUsers() {
 		this.userService.fetchAllUsers().subscribe(data => {
-			console.log(data);
 			this.users = data;
 			console.log(this.users)
 			this.userService.users = data;

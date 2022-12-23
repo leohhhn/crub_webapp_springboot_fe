@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import jwtDecode from 'jwt-decode';
+import {UserService} from './user.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,6 +14,7 @@ export class AuthService {
 	hasPermission(permToCheckFor: string): boolean {
 
 		try {
+
 			let decodedJWT: Object = jwtDecode(<string>localStorage.getItem('jwt'))
 			// @ts-ignore
 			const val: number = decodedJWT[permToCheckFor];
@@ -20,10 +22,8 @@ export class AuthService {
 			// @ts-ignore
 			return decodedJWT[permToCheckFor] == 1;
 		} catch (e) {
-			console.log("sing in to get token");
+			// console.log("sing in to get token");
 		}
-
-
 	}
 
 	getCurrentUsername(): string {
