@@ -25,16 +25,16 @@
 		<td *ngIf="userHasUpdatePerm()" name="wthever" (click)="passUpdateId(user.userId)"
 			routerLink="/updateUser" class="text-primary text-decoration-underline">{{ user.email }}</td>
 		<td *ngIf="!userHasUpdatePerm()" name="wthever2">{{ user.email }}</td>
-		<td>{{ user.perm_create }}</td>
-		<td>{{ user.perm_read }}</td>
-		<td>{{ user.perm_update }}</td>
-		<td>{{ user.perm_delete }}</td>
-		<td>{{ user.perm_mach_create }}</td>
-		<td>{{ user.perm_mach_destroy }}</td>
-		<td>{{ user.perm_mach_start }}</td>
-		<td>{{ user.perm_mach_stop }}</td>
-		<td>{{ user.perm_mach_restart }}</td>
-		<td>{{ user.perm_mach_search }}</td>
+		<td>{{ user.p_create }}</td>
+		<td>{{ user.p_read }}</td>
+		<td>{{ user.p_update }}</td>
+		<td>{{ user.p_delete }}</td>
+		<td>{{ user.pm_create }}</td>
+		<td>{{ user.pm_destroy }}</td>
+		<td>{{ user.pm_start }}</td>
+		<td>{{ user.pm_stop }}</td>
+		<td>{{ user.pm_restart }}</td>
+		<td>{{ user.pm_search}}</td>
 		<td *ngIf="userHasDeletePerm()">
 			<button class="btn btn-danger" (click)="deleteUser(user.userId)">Delete</button>
 		</td>

@@ -29,10 +29,10 @@ export class UpdateuserformComponent {
 		let u: User = this.userService.getUpdateUser();
 		this.username = u.username;
 		this.email = u.email;
-		this.p_create = u.perm_create;
-		this.p_update = u.perm_update;
-		this.p_delete = u.perm_delete;
-		this.p_read = u.perm_read;
+		this.p_create = u.p_create;
+		this.p_update = u.p_update;
+		this.p_delete = u.p_delete;
+		this.p_read = u.p_read;
 	}
 
 	// todo add mach permissions to form

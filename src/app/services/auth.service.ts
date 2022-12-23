@@ -13,7 +13,6 @@ export class AuthService {
 	hasPermission(permToCheckFor: string): boolean {
 
 		try {
-			// todo see how to fix ts ignores :/
 			let decodedJWT: Object = jwtDecode(<string>localStorage.getItem('jwt'))
 			// @ts-ignore
 			const val: number = decodedJWT[permToCheckFor];
@@ -21,9 +20,7 @@ export class AuthService {
 			// @ts-ignore
 			return decodedJWT[permToCheckFor] == 1;
 		} catch (e) {
-			// console.log(e);
-			// console.log(permToCheckFor);
-			// console.log("sing in to get token"); //todo see why constantly being pulled?
+			console.log("sing in to get token");
 		}
 
 

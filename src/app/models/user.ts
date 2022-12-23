@@ -5,35 +5,35 @@ export class User {
 	email: string;
 	password: string | undefined = '';
 
-	perm_create: number;
-	perm_read: number;
-	perm_update: number;
-	perm_delete: number;
+	p_create: number;
+	p_read: number;
+	p_update: number;
+	p_delete: number;
 
-	perm_mach_create: number;
-	perm_mach_destroy: number;
-	perm_mach_start: number;
-	perm_mach_stop: number;
-	perm_mach_restart: number;
-	perm_mach_search: number;
+	pm_create: number;
+	pm_destroy: number;
+	pm_start: number;
+	pm_stop: number;
+	pm_restart: number;
+	pm_search: number;
 
-	constructor(username: string, email: string, perm_create: number,
-				perm_read: number, perm_update: number, perm_delete: number,
-				perm_mach_create: number, perm_mach_destroy: number, perm_mach_start: number,
-				perm_mach_stop: number, perm_mach_restart: number, perm_mach_search: number,
+	constructor(username: string, email: string, p_create: number,
+				p_read: number, p_update: number, p_delete: number,
+				pm_create: number, pm_destroy: number, pm_start: number,
+				pm_stop: number, pm_restart: number, pom_search: number,
 				password?: string, userId?: number) {
 		this.username = username;
 		this.email = email;
-		this.perm_create = perm_create;
-		this.perm_read = perm_read;
-		this.perm_update = perm_update;
-		this.perm_delete = perm_delete;
-		this.perm_mach_create = perm_mach_create;
-		this.perm_mach_destroy = perm_mach_destroy;
-		this.perm_mach_start = perm_mach_start;
-		this.perm_mach_stop = perm_mach_stop;
-		this.perm_mach_restart = perm_mach_restart;
-		this.perm_mach_search = perm_mach_search;
+		this.p_create = p_create;
+		this.p_read = p_read;
+		this.p_update = p_update;
+		this.p_delete = p_delete;
+		this.pm_create = pm_create;
+		this.pm_destroy = pm_destroy;
+		this.pm_start = pm_start;
+		this.pm_stop = pm_stop;
+		this.pm_restart = pm_restart;
+		this.pm_search = pom_search;
 		this.userId = userId;
 		this.password = password;
 	}

@@ -142,10 +142,10 @@ export class UserService {
 			'username': u.username,
 			'password': u.password,
 			'email': u.email,
-			'perm_update': u.perm_update,
-			'perm_read': u.perm_read,
-			'perm_create': u.perm_create,
-			'perm_delete': u.perm_delete
+			'perm_update': u.p_update,
+			'perm_read': u.p_read,
+			'perm_create': u.p_create,
+			'perm_delete': u.p_delete
 		}
 
 		try {
@@ -176,10 +176,10 @@ export class UserService {
 			'username': newUser.username,
 			'password': newUser.password,
 			'email': newUser.email,
-			'perm_update': newUser.perm_update,
-			'perm_read': newUser.perm_read,
-			'perm_create': newUser.perm_create,
-			'perm_delete': newUser.perm_delete
+			'perm_update': newUser.p_update,
+			'perm_read': newUser.p_read,
+			'perm_create': newUser.p_create,
+			'perm_delete': newUser.p_delete
 		}
 
 		try {

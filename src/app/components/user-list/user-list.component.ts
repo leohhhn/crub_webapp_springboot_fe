@@ -27,15 +27,17 @@ export class UserListComponent {
 			this.router.navigate(['login']);
 		}
 		this.getAllUsers(); // todo change arch to have userService distribute user list to components
-		console.log(this.users)
 	}
 
 	getAllUsers() {
 		this.userService.fetchAllUsers().subscribe(data => {
+			console.log(data);
 			this.users = data;
+			console.log(this.users)
 			this.userService.users = data;
 		});
 	}
+
 	userHasUpdatePerm() {
 		return this.authService.hasPermission('p_update');
 	}
