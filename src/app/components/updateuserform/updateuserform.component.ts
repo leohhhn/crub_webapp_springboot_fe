@@ -36,7 +36,7 @@ export class UpdateuserformComponent {
 	}
 
 	// todo add mach permissions to form
-	// todo let perm inputs be 1 or 0
+	// todo let perm inputs be only 1 or 0
 	updateUser() {
 		// todo reenable updating users
 		// let t: User = new User(this.username, this.email, this.p_read, this.p_create, this.p_update, this.p_delete);

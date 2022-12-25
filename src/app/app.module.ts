@@ -9,6 +9,8 @@ import {LoginComponent} from './components/login/login.component';
 import {FormsModule} from '@angular/forms';
 import {NewuserformComponent} from './components/newuserform/newuserform.component';
 import {UpdateuserformComponent} from './components/updateuserform/updateuserform.component';
+import { MachineListComponent } from './components/machine-list/machine-list.component';
+import { CreateMachineFormComponent } from './components/create-machine-form/create-machine-form.component';
 
 @NgModule({
 	declarations: [
@@ -17,7 +19,9 @@ import {UpdateuserformComponent} from './components/updateuserform/updateuserfor
 		NavbarComponent,
 		LoginComponent,
 		UpdateuserformComponent,
-		NewuserformComponent
+		NewuserformComponent,
+  MachineListComponent,
+  CreateMachineFormComponent
 	],
 	imports: [
 		BrowserModule,

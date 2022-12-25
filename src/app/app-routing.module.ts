@@ -5,6 +5,8 @@ import {LoginComponent} from './components/login/login.component';
 import {UserListComponent} from './components/user-list/user-list.component'
 import {UpdateuserformComponent} from './components/updateuserform/updateuserform.component';
 import {NewuserformComponent} from './components/newuserform/newuserform.component';
+import {MachineListComponent} from './components/machine-list/machine-list.component';
+import {CreateMachineFormComponent} from './components/create-machine-form/create-machine-form.component';
 
 const routes: Routes = [
 	{path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -12,6 +14,8 @@ const routes: Routes = [
 	{path: 'userList', component: UserListComponent},
 	{path: 'newUser', component: NewuserformComponent},
 	{path: 'updateUser', component: UpdateuserformComponent},
+	{path: 'myMachines', component: MachineListComponent},
+	{path: 'newMachine', component: CreateMachineFormComponent},
 	{path: '**', component: LoginComponent} // todo change to 404 not found component
 ];
 
