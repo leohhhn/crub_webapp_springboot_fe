@@ -33,3 +33,16 @@ import { CreateMachineFormComponent } from './components/create-machine-form/cre
 })
 export class AppModule {
 }
+
+// TODO MAIN TASKS LEFTOVER at 30th dec:
+// 	search table with machines
+// 	implement restarting
+// 	implement locks
+//  implement scheduling
+//  implement errors
+
+
+
+
+
+

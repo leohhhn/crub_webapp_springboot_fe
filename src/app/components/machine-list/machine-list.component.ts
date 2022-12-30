@@ -4,6 +4,7 @@ import {MachineService} from '../../services/machine.service';
 import {AuthService} from '../../services/auth.service';
 import {UserService} from '../../services/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {MachineStatus} from '../../models/machine-status';
 
 @Component({
 	selector: 'app-machine-list',
@@ -22,7 +23,6 @@ export class MachineListComponent {
 
 	getAllMachines() {
 		this.machineService.fetchAllMachines().subscribe(data => {
-			console.log(data)
 			this.machines = data;
 			for (let i = 0; i < this.machines.length; i++) {
 				this.machines[i].createdOn = this.machines[i].createdOn.split('T')[0];
@@ -49,17 +49,53 @@ export class MachineListComponent {
 	}
 
 	isStopped(m: Machine) {
-		return false;
+		console.log(m.status)
+		console.log(m.status === MachineStatus.STOPPED)
+		return m.status === MachineStatus.STOPPED;
 	}
 
 
 	// Machine operations
 	startMachine(m: Machine) {
+		this.machineService.startMachine(m);
 
+		// let fetchedMachine: Machine; // TODO ?????????????
+		// let timerId = setInterval(() => this.machineService.fetchMachine(m).subscribe((res) => {
+		// 	fetchedMachine = res;
+		// 	console.log('polling')
+		// 	if (fetchedMachine.status.toString() === MachineStatus.RUNNING.toString()) {
+		// 		console.log('matched!') // todo figure out why it doesnt work
+		// 	}
+		//
+		// 	this.reloadMachineList();
+		// 	// figure out how timers actually work
+		// }), 3500);
+		// setTimeout(() => {
+		// 	clearInterval(timerId);
+		// }, 20000);
+
+		this.reloadMachineList();
 	}
 
 	stopMachine(m: Machine) {
+		this.machineService.stopMachine(m);
 
+		// let fetchedMachine: Machine;
+		// let timerId = setInterval(() => this.machineService.fetchMachine(m).subscribe((res) => {
+		// 	fetchedMachine = res;
+		// 	console.log('polling')
+		// 	if (fetchedMachine.status.toString() === MachineStatus.RUNNING.toString()) {
+		// 		console.log('matched!') // todo figure out why it doesnt work
+		// 	}
+		//
+		// 	this.reloadMachineList();
+		// 	// figure out how timers actually work
+		// }), 3500);
+		// setTimeout(() => {
+		// 	clearInterval(timerId);
+		// }, 20000);
+
+		this.reloadMachineList();
 	}
 
 	restartMachine(m: Machine) {

@@ -8,7 +8,6 @@
 			<th>Name</th>
 			<th>Created on</th>
 			<th>Status</th>
-			<th>Active</th>
 			<th>Actions</th>
 		</tr>
 		</thead>
@@ -18,14 +17,14 @@
 			<td>{{m.name}}</td>
 			<td>{{m.createdOn}}</td>
 			<td>{{m.status}}</td>
-			<td>{{m.active}}</td>
 			<td>
 				<div class="btn-toolbar">
 					<!--todo add padding to buttons-->
-					<button class="btn btn-primary" *ngIf="hasStartPermission() && isStopped(m)">Start</button>
-					<button class="btn btn-primary" *ngIf="hasStopPermission() && !isStopped(m)">Stop</button>
-					<button class="btn btn-success" *ngIf="hasRestartPermission()" (click)="restartMachine(m)">Restart</button>
-					<button class="btn btn-danger" *ngIf="hasDestroyPermission()" (click)="destroyMachine(m)">Destroy</button>
+					<!--todo disable buttons instead of making them disappear-->
+					<button class="btn btn-primary" *ngIf="hasStartPermission() && !isStopped(m)" (click)="startMachine(m)">Start</button>
+					<button class="btn btn-primary" *ngIf="hasStopPermission() && isStopped(m)" (click)="stopMachine(m)">Stop</button>
+					<button class="btn btn-success" *ngIf="hasRestartPermission() && isStopped(m)" (click)="restartMachine(m)">Restart</button>
+					<button class="btn btn-danger" *ngIf="hasDestroyPermission() && !isStopped(m)" (click)="destroyMachine(m)">Destroy</button>
 				</div>
 			</td>
 		</tbody>

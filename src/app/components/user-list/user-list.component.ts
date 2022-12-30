@@ -32,7 +32,6 @@ export class UserListComponent {
 	getAllUsers() {
 		this.userService.fetchAllUsers().subscribe(data => {
 			this.users = data;
-			console.log(this.users)
 			this.userService.users = data;
 		});
 	}
