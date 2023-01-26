@@ -1,3 +1,4 @@
 export enum MachineStatus {
-	STOPPED,BOOTING, RUNNING
+	STOPPED= "STOPPED",
+	RUNNING = "RUNNING"
 }

@@ -1,6 +1,42 @@
 <div class="container mt-3">
-	<button class="btn btn-primary d-flex justify-content-end align-items-end float-end" routerLink="/newMachine">Create new machine</button>
-	<h3>Your machines:</h3>
+	<div class="row">
+		<h3 class="col-4">Your machines</h3>
+		<button class="btn btn-primary col-2 align-items-end ms-auto" routerLink="/newMachine">Create new machine
+		</button>
+	</div>
+	<form name="searchForm">
+		<div class="border row" *ngIf="hasSearchPermission() ">
+
+			<h6>Search for a specific machine:</h6>
+			<div class="col-5">
+				<label class="">dateFrom & dateTo</label>
+			</div>
+			<div class="col-2">
+				<label>Machine name:</label>
+			</div>
+			<div class="col-3">
+				<label>Status:</label>
+			</div>
+
+			<div class="col-5">
+				<input class="" type="date" name="searchDateFrom" [(ngModel)]="searchDateFrom">
+				<input class="" type="date" name="searchDateTo" [(ngModel)]="searchDateTo">
+
+			</div>
+			<div class="col-2">
+				<input class="" name="searchMachineName" [(ngModel)]="searchMachineName">
+			</div>
+			<div class="col-3">
+				<select name="status" id="status" name="searchStatus" [(ngModel)]="searchStatus">
+					<option value="STOPPED">STOPPED</option>
+					<option value="RUNNING">RUNNING</option>
+					<option value="STOPPED & RUNNING">STOPPED & RUNNING</option>
+				</select>
+				<button class="btn btn-primary float-end" (click)="searchMachines()">Search</button>
+			</div>
+		</div>
+	</form>
+
 	<table class="table table-striped">
 		<thead>
 		<tr>
@@ -9,8 +45,11 @@
 			<th>Created on</th>
 			<th>Status</th>
 			<th>Actions</th>
+			<th>Schedule an action:</th>
+			<th>Pick a date & time:</th>
 		</tr>
 		</thead>
+
 		<tbody>
 		<tr *ngFor="let m of machines">
 			<td>{{m.machineId}}</td>
@@ -21,11 +60,31 @@
 				<div class="btn-toolbar">
 					<!--todo add padding to buttons-->
 					<!--todo disable buttons instead of making them disappear-->
-					<button class="btn btn-primary" *ngIf="hasStartPermission() && !isStopped(m)" (click)="startMachine(m)">Start</button>
-					<button class="btn btn-primary" *ngIf="hasStopPermission() && isStopped(m)" (click)="stopMachine(m)">Stop</button>
-					<button class="btn btn-success" *ngIf="hasRestartPermission() && isStopped(m)" (click)="restartMachine(m)">Restart</button>
-					<button class="btn btn-danger" *ngIf="hasDestroyPermission() && !isStopped(m)" (click)="destroyMachine(m)">Destroy</button>
+					<button class="btn btn-primary" *ngIf="hasStartPermission() && isStopped(m)"
+							(click)="startMachine(m)">Start
+					</button>
+					<button class="btn btn-primary" *ngIf="hasStopPermission() && !isStopped(m)"
+							(click)="stopMachine(m)">Stop
+					</button>
+					<button class="btn btn-success" *ngIf="hasRestartPermission() && !isStopped(m)"
+							(click)="restartMachine(m)">Restart
+					</button>
+					<button class="btn btn-danger" *ngIf="hasDestroyPermission() && isStopped(m)"
+							(click)="destroyMachine(m)">Destroy
+					</button>
 				</div>
+			</td>
+			<td>
+				<select name="" id="schedAction{{m.machineId}}" [(ngModel)]="schedAction">
+					<option value="start">Start</option>
+					<option value="stop">Stop</option>
+					<option value="restart">Restart</option>
+				</select>
+			</td>
+			<td>
+				<input type="date" name="schedDate" id="schedDate{{m.machineId}}"[(ngModel)]="schedDate">
+				<input type="time" name="schedTime" id="schedTime{{m.machineId}}"[(ngModel)]="schedTime">
+				<button class="btn btn-primary float-end" (click)="scheduleAction(m)">Schedule</button>
 			</td>
 		</tbody>
 	</table>

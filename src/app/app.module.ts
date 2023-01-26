@@ -11,6 +11,7 @@ import {NewuserformComponent} from './components/newuserform/newuserform.compone
 import {UpdateuserformComponent} from './components/updateuserform/updateuserform.component';
 import { MachineListComponent } from './components/machine-list/machine-list.component';
 import { CreateMachineFormComponent } from './components/create-machine-form/create-machine-form.component';
+import { ErrorListComponent } from './components/error-list/error-list.component';
 
 @NgModule({
 	declarations: [
@@ -21,7 +22,8 @@ import { CreateMachineFormComponent } from './components/create-machine-form/cre
 		UpdateuserformComponent,
 		NewuserformComponent,
   MachineListComponent,
-  CreateMachineFormComponent
+  CreateMachineFormComponent,
+  ErrorListComponent
 	],
 	imports: [
 		BrowserModule,

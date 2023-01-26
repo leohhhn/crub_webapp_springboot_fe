@@ -17,6 +17,9 @@
 			<li class="nav-item" *ngIf="isLoggedIn()" name="createUsersRef">
 				<a class="nav-link text-primary" routerLink="/myMachines">Machines</a>
 			</li>
+			<li class="nav-item" *ngIf="isLoggedIn()" name="errorsRef">
+				<a class="nav-link text-primary" routerLink="/errors">Errors</a>
+			</li>
 			<li class="nav-item">
 				<div *ngIf="!isLoggedIn() && getCurrentPath() !== '/login'">
 					<a routerLink="/login">
